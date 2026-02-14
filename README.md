@@ -35,8 +35,7 @@ roscore
 
     ⚠️ Keep this terminal open - roscore must keep running!
 
-TERMINAL 2 - Start Turtle Simulator
-bash
+### **TERMINAL 2** - start tutle simulator
 
 # Enter the container (new terminal)
 sudo docker exec -it robot bash
