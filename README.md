@@ -18,8 +18,12 @@ markdown
 
 ## 🚀 Quick Start Guide
 
+
 ### **TERMINAL 1** - Start ROS Master
 ```bash
+# First, allow Docker to show graphics (run on HOST machine)
+xhost +
+    This allows Docker to display the turtle simulator window on your screen
 # Enter the container
 sudo docker exec -it robot bash
 
