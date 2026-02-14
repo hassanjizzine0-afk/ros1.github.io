@@ -203,27 +203,3 @@ source /opt/ros/noetic/setup.bash
 rosnode list
 rostopic list
 
-🎉 Enjoy exploring ROS!
-
-Created for ROS1 Noetic on Docker
-text
-
-
-5. **Scroll down** to "Commit changes"
-
-6. **Add a commit message** like: "Enhanced README with better formatting"
-
-7. **Click "Commit changes"**
-
-## **Done!** 
-
-Your README will now show up beautifully on your repository page with:
-- ✅ Colored sections
-- ✅ Code blocks with syntax highlighting
-- ✅ Emojis for visual appeal
-- ✅ Tables for commands
-- ✅ Diagrams
-- ✅ Troubleshooting section
-- ✅ Quick reference
-
-No HTML needed! GitHub automatically formats Markdown beautifully.
