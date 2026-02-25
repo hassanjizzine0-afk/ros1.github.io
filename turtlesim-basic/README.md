@@ -1,25 +1,18 @@
-I see the problem! The text got cut off and the formatting is broken. Let me give you the COMPLETE and CORRECT version that you can copy and paste all at once:
+# ros1.github.io
+In this section, we'll see how the turtle simulator works using ROS1 Noetic to understand the basic principles of ROS operation.
+    Replace everything with this enhanced version:
 
-```markdown
+markdown
+
 # 🐢 ROS1 Turtle Simulator Guide
-### *Running inside Docker Container*
+### Running inside Docker Container
 
 ---
 
-<div align="center">
-  
-[![ROS](https://img.shields.io/badge/ros-noetic-blue)](https://wiki.ros.org/noetic)
-[![Docker](https://img.shields.io/badge/docker-required-blue)](https://www.docker.com/)
-[![Turtlesim](https://img.shields.io/badge/turtlesim-simulator-green)]()
-
-</div>
-
 ## 📋 Prerequisites
-
-✅ Docker installed on your system  
-✅ ROS1 Noetic container running  
-✅ Basic terminal knowledge  
-✅ X11 server (for GUI display)
+- Docker installed
+- ROS1 Noetic container running
+- Basic terminal knowledge
 
 ---
 
