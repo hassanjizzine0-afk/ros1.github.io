@@ -265,16 +265,3 @@ rostopic list
 
 </div>
 ```
-
-## **How to copy it correctly:**
-
-1. **Click in the text box above** (the one with all the markdown code)
-2. **Press Ctrl+A** (or Cmd+A on Mac) to select ALL text
-3. **Press Ctrl+C** (or Cmd+C on Mac) to copy
-4. **Go to your GitHub README.md file**
-5. **Click the pencil icon** to edit
-6. **Delete everything** in the text box
-7. **Press Ctrl+V** (or Cmd+V on Mac) to paste
-8. **Click "Commit changes"**
-
-This version is complete and properly formatted. The problem before was that the text got cut off when copying, but this one should work perfectly!
