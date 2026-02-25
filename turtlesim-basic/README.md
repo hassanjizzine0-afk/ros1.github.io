@@ -1,6 +1,6 @@
-Here's the enhanced README content again - copy ALL of this:
-markdown
+I see the problem! The text got cut off and the formatting is broken. Let me give you the COMPLETE and CORRECT version that you can copy and paste all at once:
 
+```markdown
 # 🐢 ROS1 Turtle Simulator Guide
 ### *Running inside Docker Container*
 
@@ -15,31 +15,20 @@ markdown
 </div>
 
 ## 📋 Prerequisites
-<table>
-<tr>
-<td>
 
-✅ **Docker installed** on your system  
-✅ **ROS1 Noetic container** running  
-✅ **Basic terminal knowledge**  
-✅ **X11 server** (for GUI display)
-
-</td>
-</tr>
-</table>
+✅ Docker installed on your system  
+✅ ROS1 Noetic container running  
+✅ Basic terminal knowledge  
+✅ X11 server (for GUI display)
 
 ---
 
 ## 🚀 Quick Start Guide
 
-### **TERMINAL 1** - Start ROS Master
+### **TERMINAL 1 - Start ROS Master**
 ```bash
 # First, allow Docker to show graphics (run on HOST machine)
 xhost +
-
-    💡 This allows Docker to display the turtle simulator window on your screen
-
-bash
 
 # Enter the container
 sudo docker exec -it robot bash
@@ -49,14 +38,13 @@ source /opt/ros/noetic/setup.bash
 
 # Start the ROS master
 roscore
+```
+> ⚠️ **IMPORTANT:** Keep this terminal open - `roscore` must keep running!
 
-<div align="center">
+---
 
-⚠️ IMPORTANT: Keep this terminal open - roscore must keep running!
-</div>
-TERMINAL 2 - Start Turtle Simulator
-bash
-
+### **TERMINAL 2 - Start Turtle Simulator**
+```bash
 # Enter the container (new terminal)
 sudo docker exec -it robot bash
 
@@ -65,14 +53,13 @@ source /opt/ros/noetic/setup.bash
 
 # Launch the turtle simulator
 rosrun turtlesim turtlesim_node
+```
+> 🐢 *A blue window will appear with a turtle in the center*
 
-<div align="center">
+---
 
-🐢 A blue window will appear with a turtle in the center
-</div>
-TERMINAL 3 - Control the Turtle
-bash
-
+### **TERMINAL 3 - Control the Turtle**
+```bash
 # Enter the container (another new terminal)
 sudo docker exec -it robot bash
 
@@ -81,55 +68,65 @@ source /opt/ros/noetic/setup.bash
 
 # Start keyboard control
 rosrun turtlesim turtle_teleop_key
+```
+> ⌨️ *Use arrow keys to move the turtle around*
 
-<div align="center">
+---
 
-⌨️ Use arrow keys to move the turtle around
-</div>
-TERMINAL 4 - Inspection & Monitoring
-bash
-
+### **TERMINAL 4 - Inspection & Monitoring**
+```bash
 # Enter the container (4th terminal)
 sudo docker exec -it robot bash
 
 # Source ROS
 source /opt/ros/noetic/setup.bash
+```
 
-🔍 Inspection Commands
-<details> <summary><b>📋 List all running nodes</b> (click to expand)</summary>
-bash
+---
 
+## 🔍 Inspection Commands
+
+<details>
+<summary><b>📋 List all running nodes</b> (click to expand)</summary>
+
+```bash
 rosnode list
+```
 
-Expected output:
-text
-
+**Expected output:**
+```
 /rosout
 /teleop_turtle
 /turtlesim
+```
+</details>
 
-</details><details> <summary><b>📋 List all active topics</b> (click to expand)</summary>
-bash
+<details>
+<summary><b>📋 List all active topics</b> (click to expand)</summary>
 
+```bash
 rostopic list
+```
 
-Expected output:
-text
-
+**Expected output:**
+```
 /rosout
 /rosout_agg
 /turtle1/cmd_vel
 /turtle1/color_sensor
 /turtle1/pose
+```
+</details>
 
-</details><details> <summary><b>🔌 Check who publishes to cmd_vel</b> (click to expand)</summary>
-bash
+<details>
+<summary><b>🔌 Check who publishes to cmd_vel</b> (click to expand)</summary>
 
+```bash
 rostopic info /turtle1/cmd_vel
+```
 
-Expected output:
-text
-
+**Expected output:**
+```
 Type: geometry_msgs/Twist
 
 Publishers: 
@@ -137,15 +134,18 @@ Publishers:
 
 Subscribers: 
  * /turtlesim (http://localhost:34568/)
+```
+</details>
 
-</details><details> <summary><b>📊 See turtle position in real-time</b> (click to expand)</summary>
-bash
+<details>
+<summary><b>📊 See turtle position in real-time</b> (click to expand)</summary>
 
+```bash
 rostopic echo /turtle1/pose
+```
 
-Live data output:
-text
-
+**Live data output:**
+```
 x: 5.5
 y: 5.5
 theta: 0.0
@@ -158,14 +158,17 @@ theta: 0.0
 linear_velocity: 2.0
 angular_velocity: 0.0
 ---
-
-    ⏹️ Press Ctrl+C to stop viewing
-
+```
+> ⏹️ Press `Ctrl+C` to stop viewing
 </details>
-📊 Node & Topic Diagram
-<div align="center">
-text
 
+---
+
+## 📊 Node & Topic Diagram
+
+<div align="center">
+
+```
 ┌────────────────┐      /turtle1/cmd_vel      ┌────────────────┐
 │                │  ────────────────────────►  │                │
 │  teleop_turtle │                             │   turtlesim    │
@@ -173,65 +176,112 @@ text
 │                │  ◄────────────────────────  │                │
 └────────────────┘      /turtle1/pose          └────────────────┘
                          (feedback)
+```
 
 </div>
-🎮 Control Reference
-<div align="center">
-Key	Action	Description
-↑	Move forward	Increases linear velocity
-↓	Move backward	Decreases linear velocity
-←	Turn left	Increases angular velocity (counter-clockwise)
-→	Turn right	Increases angular velocity (clockwise)
-Ctrl+C	Stop node	Terminates the running process
-</div>
-📚 Useful Commands Reference
-<table> <tr> <th width="30%">Command</th> <th width="70%">Description</th> </tr> <tr> <td><code>rosnode list</code></td> <td>Show all active nodes</td> </tr> <tr> <td><code>rosnode info /node_name</code></td> <td>Show details about a specific node</td> </tr> <tr> <td><code>rostopic list</code></td> <td>Show all active topics</td> </tr> <tr> <td><code>rostopic echo /topic_name</code></td> <td>Display real-time messages on a topic</td> </tr> <tr> <td><code>rostopic info /topic_name</code></td> <td>Show publishers and subscribers of a topic</td> </tr> <tr> <td><code>rqt_graph</code></td> <td>Show graphical node diagram</td> </tr> <tr> <td><code>rosservice list</code></td> <td>Show available services</td> </tr> </table>
-⚠️ Important Notes
-<div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
 
-✅ Always source ROS in every new terminal:
-bash
+---
 
-source /opt/ros/noetic/setup.bash
+## 🎮 Control Reference
 
-✅ roscore must be running before starting any other nodes
-✅ Each terminal runs independently - don't close them while the system is running
-✅ Use Ctrl+C to gracefully stop any running node
-✅ The turtle window shows the simulation visually
-</div>
-🐛 Troubleshooting
-<table> <tr> <td width="20%"><b>❓ Problem</b></td> <td width="80%"><b>💡 Solution</b></td> </tr> <tr> <td><b>No turtle window</b></td> <td>Make sure <code>roscore</code> is running in Terminal 1 and <code>xhost +</code> was executed</td> </tr> <tr> <td><b>Can't move turtle</b></td> <td>Click on the <b>teleop terminal window</b> first, then use arrow keys (keyboard focus)</td> </tr> <tr> <td><b>"Connection refused"</b></td> <td>Verify you sourced ROS in every terminal: <code>source /opt/ros/noetic/setup.bash</code></td> </tr> <tr> <td><b>Docker display issues</b></td> <td>On host machine, run: <code>xhost +local:docker</code> for better security</td> </tr> </table>
-📝 Quick Start Summary
-<details open> <summary><b>Click to expand terminal commands summary</b></summary>
-Terminal 1 (keep open)
-bash
+| Key | Action | Description |
+|:---:|:------:|:------------|
+| **↑** | **Move forward** | Increases linear velocity |
+| **↓** | **Move backward** | Decreases linear velocity |
+| **←** | **Turn left** | Increases angular velocity (counter-clockwise) |
+| **→** | **Turn right** | Increases angular velocity (clockwise) |
+| **Ctrl+C** | **Stop node** | Terminates the running process |
 
+---
+
+## 📚 Useful Commands Reference
+
+| Command | Description |
+|:--------|:------------|
+| `rosnode list` | Show all active nodes |
+| `rosnode info /node_name` | Show details about a specific node |
+| `rostopic list` | Show all active topics |
+| `rostopic echo /topic_name` | Display real-time messages on a topic |
+| `rostopic info /topic_name` | Show publishers and subscribers of a topic |
+| `rqt_graph` | Show graphical node diagram |
+| `rosservice list` | Show available services |
+
+---
+
+## ⚠️ Important Notes
+
+- ✅ **Always source ROS** in every new terminal: `source /opt/ros/noetic/setup.bash`
+- ✅ **`roscore` must be running** before starting any other nodes
+- ✅ **Each terminal runs independently** - don't close them while the system is running
+- ✅ Use **`Ctrl+C`** to gracefully stop any running node
+- ✅ The **turtle window** shows the simulation visually
+
+---
+
+## 🐛 Troubleshooting
+
+| Problem | Solution |
+|:--------|:---------|
+| **No turtle window** | Make sure `roscore` is running in Terminal 1 and `xhost +` was executed |
+| **Can't move turtle** | Click on the **teleop terminal window** first, then use arrow keys |
+| **"Connection refused"** | Verify you sourced ROS in every terminal: `source /opt/ros/noetic/setup.bash` |
+| **Docker display issues** | On host machine, run: `xhost +local:docker` for better security |
+
+---
+
+## 📝 Quick Start Summary
+
+<details open>
+<summary><b>Click to expand terminal commands summary</b></summary>
+
+### Terminal 1 (keep open)
+```bash
 sudo docker exec -it robot bash
 source /opt/ros/noetic/setup.bash
 roscore
+```
 
-Terminal 2 (keep open)
-bash
-
+### Terminal 2 (keep open)
+```bash
 sudo docker exec -it robot bash
 source /opt/ros/noetic/setup.bash
 rosrun turtlesim turtlesim_node
+```
 
-Terminal 3 (keep open)
-bash
-
+### Terminal 3 (keep open)
+```bash
 sudo docker exec -it robot bash
 source /opt/ros/noetic/setup.bash
 rosrun turtlesim turtle_teleop_key
+```
 
-Terminal 4 (for inspection)
-bash
-
+### Terminal 4 (for inspection)
+```bash
 sudo docker exec -it robot bash
 source /opt/ros/noetic/setup.bash
 rosnode list
 rostopic list
+```
+</details>
 
-</details><div align="center">
-🎉 You're now ready to explore ROS1 with turtlesim! 🎉
-</div> ```
+---
+
+<div align="center">
+
+### 🎉 **You're now ready to explore ROS1 with turtlesim!** 🎉
+
+</div>
+```
+
+## **How to copy it correctly:**
+
+1. **Click in the text box above** (the one with all the markdown code)
+2. **Press Ctrl+A** (or Cmd+A on Mac) to select ALL text
+3. **Press Ctrl+C** (or Cmd+C on Mac) to copy
+4. **Go to your GitHub README.md file**
+5. **Click the pencil icon** to edit
+6. **Delete everything** in the text box
+7. **Press Ctrl+V** (or Cmd+V on Mac) to paste
+8. **Click "Commit changes"**
+
+This version is complete and properly formatted. The problem before was that the text got cut off when copying, but this one should work perfectly!
