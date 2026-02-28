@@ -1,81 +1,50 @@
-Perfect! I can see your project structure clearly now. Here's your enhanced README with beautiful formatting, emojis, and better organization:
+Simplified README.md:
+Markdown
+Copy
+Code Preview
 
-```markdown
-# 🐢 Turtlesim Advanced Project
-### *3 Python Nodes for ROS1 Noetic*
+# Turtlesim Advanced Project
 
-<div align="center">
-  
-[![ROS](https://img.shields.io/badge/ros-noetic-blue)](https://wiki.ros.org/noetic)
-[![Python](https://img.shields.io/badge/python-3-yellow)](https://www.python.org/)
-[![License](https://img.shields.io/badge/license-MIT-green)]()
-
-</div>
-
-> Advanced ROS project with Turtlesim featuring 3 Python nodes: ANBAR writer, Circle mover, and Keyboard controller.
-
----
-
-## 📋 Table of Contents
-- [Project Structure](#-project-structure)
-- [Quick Start](#-quick-start)
-- [Python Nodes](#-python-nodes)
-- [How to Run](#️-how-to-run)
-- [Launch File](#-launch-file)
-- [Summary Commands](#-summary-commands)
-- [Author](#-author)
+Advanced ROS project with Turtlesim featuring 3 Python nodes.
 
 ---
 
 ## 📁 Project Structure
 
-```
-📦 turtlesim-advanced/
-├── 📄 README.md
-├── 📂 launch/
-│   └── 📄 advanced.launch          # Launch all nodes together
-└── 📂 src/
-    └── 📂 my_first_pkg/            # Main ROS Package
-        ├── 📄 CMakeLists.txt       # Build configuration
-        ├── 📄 package.xml           # Package dependencies
-        └── 📂 scripts/              # Python nodes
-            ├── 🐍 anbar_writer.py      # Draws "ANBAR" text
-            ├── 🐍 circle_mover.py      # Moves in circle pattern
-            └── 🐍 keyboard_control.py  # WASD keyboard control
-```
+turtlesim-advanced/
+├── README.md
+├── launch/
+│   └── advanced.launch          # Launch all nodes
+└── src/
+└── my_first_pkg/            # ROS Package
+├── CMakeLists.txt       # Build config View
+├── package.xml          # Dependencies View
+└── scripts/             # Python nodes
+├── anbar_writer.py      # Draws "ANBAR" View
+├── circle_mover.py      # Circle movement View
+└── keyboard_control.py  # Keyboard control View
+plain
+Copy
 
-<details>
-<summary><b>📸 View my actual repository structure</b> (click to expand)</summary>
-
-```
-📁 my_first_pkg/
-├── 📄 CMakeLists.txt    (Updated 1 hour ago)
-├── 📄 package.xml        (Updated 53 minutes ago)
-├── 📂 launch/           
-│   └── 📄 advanced.launch  (Created 1 hour ago)
-└── 📂 scripts/          
-    ├── 📄 anbar_writer.py     (Updated 1 hour ago)
-    ├── 📄 circle_mover.py     (Updated 1 hour ago)
-    └── 📄 keyboard_control.py (Created 1 hour ago)
-```
-</details>
 
 ---
 
 ## 🚀 Quick Start
 
-### Step 1: Create & Build Workspace
+### 1. Create & Build Workspace
+
 ```bash
-# Create workspace folder structure
+# Create workspace
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
 
-# Build the workspace for first time
+# Build
 catkin_make
 
-# Source the workspace (add to ~/.bashrc for convenience)
+# Source
 source devel/setup.bash
-```
+
+
 
 ---
 
