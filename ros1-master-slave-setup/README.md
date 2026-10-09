@@ -216,12 +216,3 @@ rosnode list
 
 ---
 
-## 🎯 Summary
-
-1. **`roscore`** — one per network (on the laptop).
-2. **`ROS_MASTER_URI`** — same for everyone (laptop's address).
-3. **`ROS_IP`** — unique for each device.
-4. **One network** — both devices must be able to ping each other.
-5. **Test** — `turtlesim` on the laptop + `teleop` on the Pi.
-
-If the turtle moves — **the connection works**.
