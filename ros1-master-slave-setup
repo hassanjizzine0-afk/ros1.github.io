@@ -1,0 +1,226 @@
+# ROS 1: Connecting a Laptop and a Raspberry Pi
+
+**laptop** (where `roscore` runs) and a **Raspberry Pi** (where the robot's nodes run).
+
+---
+
+## 📚 How ROS 1 Works
+
+**`roscore`** is the main node (ROS Master). It **introduces** nodes to each other. After that, nodes communicate **directly** over TCP/IP.
+
+**Analogy:** `roscore` is a receptionist. Nodes are employees. The receptionist gives the address, then employees call each other directly.
+
+**What you need:**
+
+| Parameter | Meaning |
+|---|---|
+| `ROS_MASTER_URI` | Address of `roscore` (same for everyone) |
+| `ROS_IP` | IP of **your own** device |
+| One network | Devices must be able to ping each other |
+
+---
+
+## 🔍 Step 1: Find the IP Address
+
+**On the laptop:**
+
+```bash
+hostname -I
+```
+
+→ `10.42.0.1`
+
+**On the Pi:**
+
+```bash
+hostname -I
+```
+
+→ `10.42.0.137`
+
+**From the laptop, find the Pi:**
+
+```bash
+ip neigh | grep d8:3a:dd
+```
+
+---
+
+## 🖥️ Step 2: Laptop (where `roscore` runs)
+
+```bash
+nano ~/.bashrc
+```
+
+Add at the end:
+
+```bash
+export ROS_MASTER_URI=http://10.42.0.1:11311
+export ROS_IP=10.42.0.1
+```
+
+Apply:
+
+```bash
+source ~/.bashrc
+```
+
+**Verify:**
+
+```bash
+echo $ROS_MASTER_URI
+echo $ROS_IP
+```
+
+Should print:
+
+```
+http://10.42.0.1:11311
+10.42.0.1
+```
+
+Start `roscore`:
+
+```bash
+roscore
+```
+
+---
+
+## 🍓 Step 3: Raspberry Pi
+
+```bash
+nano ~/.bashrc
+```
+
+Add at the end:
+
+```bash
+export ROS_MASTER_URI=http://10.42.0.1:11311
+export ROS_IP=10.42.0.137
+```
+
+Apply:
+
+```bash
+source ~/.bashrc
+```
+
+**Verify:**
+
+```bash
+echo $ROS_MASTER_URI
+echo $ROS_IP
+```
+
+Should print:
+
+```
+http://10.42.0.1:11311
+10.42.0.137
+```
+
+---
+
+## 🐢 Step 4: Test with turtlesim
+
+**Install (on both devices):**
+
+```bash
+sudo apt install -y ros-noetic-turtlesim
+```
+
+**Laptop (terminal 1):**
+
+```bash
+roscore
+```
+
+**Laptop (terminal 2):**
+
+```bash
+rosrun turtlesim turtlesim_node
+```
+
+**Pi:**
+
+```bash
+rosrun turtlesim turtle_teleop_key
+```
+
+**Press arrow keys on the Pi** → the turtle on the laptop moves. **The connection works.**
+
+---
+
+## ✅ Verifying the Connection
+
+```bash
+rostopic list
+```
+
+You should see `/turtle1/cmd_vel` in the list.
+
+```bash
+rostopic echo /turtle1/pose
+```
+
+Coordinates of the turtle should appear.
+
+---
+
+## 📊 Summary Table
+
+| Device | `ROS_MASTER_URI` | `ROS_IP` |
+|---|---|---|
+| **Laptop** | `http://10.42.0.1:11311` | `10.42.0.1` |
+| **Raspberry Pi** | `http://10.42.0.1:11311` | `10.42.0.137` |
+
+**Rule:**
+- `ROS_MASTER_URI` — **same** for everyone (address of `roscore`).
+- `ROS_IP` — **unique** for each device.
+
+---
+
+## ⚠️ Common Issues
+
+| Problem | Solution |
+|---|---|
+| `Unable to communicate with master` | `roscore` is not running |
+| `rostopic list` is empty | `ROS_MASTER_URI` is incorrect |
+| Pi cannot see the laptop | `ping 10.42.0.1` |
+| `package not found` | `sudo apt install ros-noetic-<package>` |
+
+---
+
+## 📌 Useful Commands
+
+```bash
+# Check variables
+echo $ROS_MASTER_URI
+echo $ROS_IP
+
+# Check connectivity
+ping 10.42.0.1
+ping 10.42.0.137
+
+# List topics
+rostopic list
+
+# View data
+rostopic echo /turtle1/pose
+
+# List nodes
+rosnode list
+```
+
+---
+
+## 🎯 Summary
+
+1. **`roscore`** — one per network (on the laptop).
+2. **`ROS_MASTER_URI`** — same for everyone (laptop's address).
+3. **`ROS_IP`** — unique for each device.
+4. **One network** — both devices must be able to ping each other.
+5. **Test** — `turtlesim` on the laptop + `teleop` on the Pi.
+
+If the turtle moves — **the connection works**.
