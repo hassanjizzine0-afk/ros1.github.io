@@ -1,6 +1,6 @@
 # ROS 1: Connecting a Laptop and a Raspberry Pi
 
-**laptop** (where `roscore` runs) and a **Raspberry Pi** (where the robot's nodes run).
+A practical guide to setting up ROS 1 Noetic between two devices: a **laptop** (where `roscore` runs) and a **Raspberry Pi** (where the robot's nodes run).
 
 ---
 
