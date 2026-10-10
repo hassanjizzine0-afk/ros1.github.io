@@ -15,13 +15,7 @@ This guide covers how to connect an **RPLIDAR A1** to a **Raspberry Pi** running
 | RPLIDAR A1 | Connected to the Pi via USB |
 | USB cable | Data + power |
 
----
 
-## 🔋 Important: Power the Lidar from the Pi
-
-The RPLIDAR A1 requires **stable 5V at ~1.5A**. USB ports on laptops often cannot supply this, causing the lidar to **spin for 1–2 seconds and then stop**.
-
-**Always connect the lidar to the Raspberry Pi**, not directly to the laptop.
 
 ---
 
